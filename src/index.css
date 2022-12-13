@@ -4,4 +4,13 @@
 
 body {
   margin: 0;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+
+  .mx-auto.glass.p-9.rounded-xl {
+    width: 375px;
+  }
+
 }
