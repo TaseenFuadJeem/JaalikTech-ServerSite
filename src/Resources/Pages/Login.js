@@ -4,13 +4,15 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../All-Components/Others/firebase.init';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
-
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -57,9 +59,10 @@ const Login = () => {
                 title: 'Login Successful',
                 showConfirmButton: false,
                 timer: 2000
-            })
+            });
+            navigate("/dashboard");
         }
-    }, [user])
+    }, [user, navigate]);
 
 
     return (

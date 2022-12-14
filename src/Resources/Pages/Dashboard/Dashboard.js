@@ -1,10 +1,12 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../All-Components/Others/firebase.init';
 
 const Dashboard = () => {
+
+    const navigate = useNavigate();
 
     const handleLogout = () => {
 
@@ -17,6 +19,7 @@ const Dashboard = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 signOut(auth);
+                navigate("/login");
                 Swal.fire('Logout Successful', '', 'success')
             };
         })
