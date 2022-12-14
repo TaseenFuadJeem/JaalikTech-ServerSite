@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../All-Components/Others/firebase.init';
+import { HiMenu } from 'react-icons/hi';
 
 const Dashboard = () => {
 
@@ -31,12 +32,12 @@ const Dashboard = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content bg-transparent backdrop-blur">
                 {/* Page content here */}
-                <div className='m-7 flex justify-between'>
+                <div className='m-7 flex justify-between items-center'>
                     <h1 className='text-4xl text-white font-semibold'>Dashboard</h1>
-                    <button onClick={() => handleLogout()} className="btn btn-primary text-white">Log out</button>
+                    <button onClick={() => handleLogout()} className="btn btn-primary text-white hidden lg:block">Log out</button>
+                    <label htmlFor="my-drawer-2" className="drawer-button lg:hidden"><HiMenu className='text-white text-3xl' /></label>
                 </div>
                 <Outlet />
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
             <div className="drawer-side">
@@ -45,6 +46,7 @@ const Dashboard = () => {
                     {/* Sidebar content here */}
                     <li className='my-2'><NavLink to="/dashboard/">Appointment Bookings</NavLink></li>
                     <li className='my-2'><NavLink to="/dashboard/manage-articles-and-blogs">Articles and Blogs</NavLink></li>
+                    <button onClick={() => handleLogout()} className="btn text-white block lg:hidden mt-2">Log out</button>
                 </ul>
 
             </div>
