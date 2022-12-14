@@ -8,7 +8,7 @@ import Login from './Resources/Pages/Login';
 
 function App() {
   return (
-    <section className='h-screen bg-image bg-no-repeat bg-cover bg-center bg-fixed'>
+    <section className='bg-image bg-no-repeat bg-cover bg-center bg-fixed'>
 
       <Routes>
         <Route path='/' element={<Home />} />

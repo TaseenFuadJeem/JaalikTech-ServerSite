@@ -19,7 +19,7 @@ const Dashboard = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 signOut(auth);
-                navigate("/login");
+                navigate("/");
                 Swal.fire('Logout Successful', '', 'success')
             };
         })
