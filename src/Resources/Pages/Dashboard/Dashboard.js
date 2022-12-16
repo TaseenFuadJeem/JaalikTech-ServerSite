@@ -33,7 +33,7 @@ const Dashboard = () => {
             <div className="drawer-content bg-transparent backdrop-blur">
                 {/* Page content here */}
                 <div className='m-7 flex justify-between items-center'>
-                    <h1 className='text-4xl text-white font-semibold'>Dashboard</h1>
+                    <h1 className='lg:text-4xl text-2xl text-white font-semibold'>JaalikTech Dashboard</h1>
                     <button onClick={() => handleLogout()} className="btn btn-primary text-white hidden lg:block">Log out</button>
                     <label htmlFor="my-drawer-2" className="drawer-button lg:hidden"><HiMenu className='text-white text-3xl' /></label>
                 </div>
