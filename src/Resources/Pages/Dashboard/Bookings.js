@@ -1,18 +1,19 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../All-Components/Common/Loading';
+import BookingsTableRow from './BookingsTableRow';
 
 const Bookings = () => {
 
     // Fetching data from database for showing all bookings
-    const { data: bookings, isLoading } = useQuery("AllBookingList", () => fetch("http://localhost:5000/all-bookings")
+    const { data: bookings, isLoading, refetch } = useQuery("AllBookingList", () => fetch("http://localhost:5000/all-bookings")
         .then(res => res.json())
     );
 
     // Loading for database
     if (isLoading) {
         return <Loading />
-    }
+    };
 
     return (
         <div className='bg-white mx-4 mb-4 p-4 rounded-md'>
@@ -35,17 +36,7 @@ const Bookings = () => {
                         {
                             bookings?.map((booking, index) =>
 
-                                <tbody>
-                                    <tr>
-                                        <th>{index + 1}</th>
-                                        <td>{booking?.name}</td>
-                                        <td>{booking?.email}</td>
-                                        <td>{booking?.country}</td>
-                                        <td>{booking?.phone}</td>
-                                        <td>{booking?.date}</td>
-                                        <td><button className="btn btn-xs btn-warning capitalize text-white">{booking?.status}</button></td>
-                                    </tr>
-                                </tbody>
+                                <BookingsTableRow key={booking?._id} booking={booking} index={index} refetch={refetch} />
 
                             )
                         }
