@@ -44,7 +44,17 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 lg:w-[250px] w-80 bg-base-100 text-base-content">
                     {/* Sidebar content here */}
-                    <li className='my-2'><NavLink to="/dashboard/">Appointment Bookings</NavLink></li>
+                    <div className="collapse collapse-arrow">
+                        <input type="checkbox" className="peer" />
+                        <div className="collapse-title">
+                            Appointments
+                        </div>
+                        <div className="collapse-content">
+                            <li className='my-2 text-sm'><NavLink to="/dashboard/">All Bookings</NavLink></li>
+                            <li className='my-2 text-sm'><NavLink to="/dashboard/pending-appointments">Pending Bookings</NavLink></li>
+                            <li className='my-2 text-sm'><NavLink to="/dashboard/completed-appointments">Completed Bookings</NavLink></li>
+                        </div>
+                    </div>
                     <li className='my-2'><NavLink to="/dashboard/manage-articles-and-blogs">Articles and Blogs</NavLink></li>
                     <button onClick={() => handleLogout()} className="btn text-white block lg:hidden mt-2">Log out</button>
                 </ul>
