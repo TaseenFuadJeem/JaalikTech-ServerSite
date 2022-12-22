@@ -49,21 +49,27 @@ const Login = () => {
 
     const onSubmit = async data => {
         await signInWithEmailAndPassword(data.email, data.password);
+
+        const email = data.email;
+
+        fetch("http://localhost:5000/login", {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email })
+        }).then(response => response.json()).then(result => {
+            if (result.success) {
+                localStorage.setItem('accessToken', result.accessToken);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                navigate("/dashboard");
+            }
+        });
     };
-
-    useEffect(() => {
-        if (user) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Login Successful',
-                showConfirmButton: false,
-                timer: 2000
-            });
-            navigate("/dashboard");
-        }
-    }, [user, navigate]);
-
 
     return (
         <section>

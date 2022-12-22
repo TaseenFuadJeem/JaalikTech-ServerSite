@@ -1,14 +1,27 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import BookingsTableRow from './BookingsTableRow';
 
 const Bookings = () => {
 
+    const navigate = useNavigate();
+
     // Fetching data from database for showing all bookings
-    const { data: bookings, isLoading, refetch } = useQuery("AllBookingList", () => fetch("http://localhost:5000/all-bookings")
-        .then(res => res.json())
-    );
+    const { data: bookings, isLoading, refetch } = useQuery("AllBookingList", () => fetch("http://localhost:5000/all-bookings", {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            navigate("/login");
+            localStorage.removeItem('accessToken');
+        } else {
+            return res.json()
+        }
+    }));
 
     // Loading for database
     if (isLoading) {

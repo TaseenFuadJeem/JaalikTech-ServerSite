@@ -1,13 +1,26 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const CompletedBookings = () => {
 
+    const navigate = useNavigate();
+
     // Fetching data from database for showing all completed appointments
-    const { data: completedBookings, isLoading } = useQuery("completedBookings", () => fetch("http://localhost:5000/completed-appointments")
-        .then(res => res.json())
-    );
+    const { data: completedBookings, isLoading } = useQuery("completedBookings", () => fetch("http://localhost:5000/completed-appointments", {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            navigate("/login");
+            localStorage.removeItem('accessToken');
+        } else {
+            return res.json()
+        }
+    }));
 
     if (isLoading) {
         Swal.fire({

@@ -19,6 +19,7 @@ const Dashboard = () => {
             denyButtonText: 'Cancel',
         }).then((result) => {
             if (result.isConfirmed) {
+                localStorage.removeItem('accessToken');
                 signOut(auth);
                 navigate("/");
                 Swal.fire('Logout Successful', '', 'success')

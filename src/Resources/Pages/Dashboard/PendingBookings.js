@@ -1,14 +1,27 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import PendingBookingsRow from './PendingBookingsRow';
 
 const PendingBookings = () => {
 
+    const navigate = useNavigate();
+
     // Fetching data from database for showing all pending appointments
-    const { data: pendingBookings, isLoading, refetch } = useQuery("pendingBookings", () => fetch("http://localhost:5000/pending-appointments")
-        .then(res => res.json())
-    );
+    const { data: pendingBookings, isLoading, refetch } = useQuery("pendingBookings", () => fetch("http://localhost:5000/pending-appointments", {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            navigate("/login");
+            localStorage.removeItem('accessToken');
+        } else {
+            return res.json()
+        }
+    }));
 
     if (isLoading) {
         Swal.fire({
