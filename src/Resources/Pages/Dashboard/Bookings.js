@@ -41,7 +41,7 @@ const Bookings = () => {
                                 <th>Email</th>
                                 <th>Country</th>
                                 <th>Phone Num</th>
-                                <th>Appointment Date</th>
+                                <th>Appointment Date<br />(YY-MM-DD)</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
