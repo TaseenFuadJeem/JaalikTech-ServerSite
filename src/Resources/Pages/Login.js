@@ -87,7 +87,6 @@ const Login = () => {
                             <div>
                                 <div className='mx-auto glass p-9 rounded-xl'>
 
-                                    {/* <h1 className='text-center lg:text-2xl text-xl font-bold text-primary'><img className='w-8 contrast-200 App-logo inline-block mt-[-6px]' src={logo} alt="" /> Credible Technologies</h1> */}
                                     <p className='text-center font-bold my-3 text-white'>ADMIN LOGIN</p>
 
                                     <form onSubmit={handleSubmit(onSubmit)}>

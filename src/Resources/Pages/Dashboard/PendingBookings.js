@@ -53,7 +53,7 @@ const PendingBookings = () => {
                                 <th>Email</th>
                                 <th>Country</th>
                                 <th>Phone Num</th>
-                                <th>Appointment Date<br />(YY-MM-DD)</th>
+                                <th>Appointment Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
